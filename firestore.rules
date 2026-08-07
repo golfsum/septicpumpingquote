@@ -1,0 +1,49 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in [
+          // Add admin emails or use custom claims in production
+        ];
+    }
+
+    match /leads/{id} {
+      allow read, update, delete: if isAdmin();
+      allow create: if false; // created via Admin SDK / API only
+    }
+
+    match /providers/{id} {
+      allow read, write: if isAdmin();
+    }
+
+    match /providerAssignments/{id} {
+      allow read, write: if isAdmin();
+    }
+
+    match /seoPages/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /keywords/{id} {
+      allow read, write: if isAdmin();
+    }
+
+    match /seoMetrics/{id} {
+      allow read, write: if isAdmin();
+    }
+
+    match /settings/{id} {
+      allow read, write: if isAdmin();
+    }
+
+    match /users/{id} {
+      allow read, write: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
