@@ -31,6 +31,7 @@ export async function GET() {
     opportunities,
     lastSync: settings.gscLastSync,
     property: settings.gscProperty || process.env.GSC_PROPERTY || "",
+    serviceAccount: process.env.GSC_CLIENT_EMAIL || null,
   });
 }
 
@@ -38,10 +39,30 @@ export async function POST(request: Request) {
   if (!(await requireAdmin())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  const body = await request.json().catch(() => ({}));
-  const result = await syncSearchConsole({
-    startDate: body.startDate,
-    endDate: body.endDate,
-  });
-  return NextResponse.json(result);
+  try {
+    const body = await request.json().catch(() => ({}));
+    const result = await syncSearchConsole({
+      startDate: body.startDate,
+      endDate: body.endDate,
+    });
+    return NextResponse.json(result);
+  } catch (error) {
+    console.error("GSC sync failed", error);
+    const message =
+      error instanceof Error ? error.message : "Search Console sync failed";
+    const permissionDenied =
+      message.includes("sufficient permission") || message.includes("403");
+
+    return NextResponse.json(
+      {
+        error: message,
+        serviceAccount: process.env.GSC_CLIENT_EMAIL || null,
+        property: process.env.GSC_PROPERTY || null,
+        hint: permissionDenied
+          ? `In Google Search Console → Settings → Users and permissions, add ${process.env.GSC_CLIENT_EMAIL || "your GSC_CLIENT_EMAIL"} as a user with Full permission on ${process.env.GSC_PROPERTY || "the property"}. Then retry sync.`
+          : "Check GSC_CLIENT_EMAIL, GSC_PRIVATE_KEY / GSC_PRIVATE_KEY_BASE64, GSC_PROPERTY, and that Search Console API is enabled.",
+      },
+      { status: permissionDenied ? 403 : 500 },
+    );
+  }
 }

@@ -3,7 +3,7 @@ import { QuoteForm } from "@/components/quote/QuoteForm";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { siteConfig } from "@/config/site";
 import { SERVICE_OPTIONS } from "@/config/services";
-import { LOCATIONS } from "@/config/locations";
+import { getPublishedLocations } from "@/config/locations";
 import { organizationSchema, websiteSchema } from "@/lib/seo/schema";
 
 const howItWorks = [
@@ -150,27 +150,19 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-4 py-14">
           <h2 className="text-2xl font-bold">Popular service areas</h2>
           <p className="mt-2 max-w-2xl text-teal-100">
-            We are starting with a focused Tucson-area cluster and expanding
-            based on real search demand.
+            Tucson is the deepest local cluster. We also publish major-metro hubs
+            where septic is common outside city sewer lines.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href="/az/tucson"
-              className="rounded-md bg-white/10 px-4 py-2 text-sm font-medium hover:bg-white/20"
-            >
-              Tucson, AZ hub
-            </Link>
-            {Object.values(LOCATIONS)
-              .filter((loc) => loc.slug !== "tucson")
-              .map((loc) => (
-                <span
-                  key={loc.slug}
-                  className="rounded-md bg-white/5 px-4 py-2 text-sm text-teal-100"
-                  title="Expand only with unique local content"
-                >
-                  {loc.name} (nearby)
-                </span>
-              ))}
+            {getPublishedLocations().map((loc) => (
+              <Link
+                key={loc.slug}
+                href={`/${loc.stateSlug}/${loc.slug}`}
+                className="rounded-md bg-white/10 px-4 py-2 text-sm font-medium hover:bg-white/20"
+              >
+                {loc.name}, {loc.state}
+              </Link>
+            ))}
           </div>
         </div>
       </section>

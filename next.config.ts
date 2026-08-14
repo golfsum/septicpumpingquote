@@ -2,17 +2,10 @@ import type { NextConfig } from "next";
 import path from "path";
 
 const nextConfig: NextConfig = {
-  // Keep tracing/bundling rooted on this site folder (monorepo-adjacent parent noise).
   outputFileTracingRoot: path.join(__dirname),
-  turbopack: {
-    root: path.join(__dirname),
-  },
-  // Next.js blocks /_next/* from non-localhost hosts in dev (403). Allow LAN access.
-  allowedDevOrigins: [
-    "10.5.0.2",
-    "127.0.0.1",
-    "localhost",
-  ],
+  // Keep firebase-admin external so Node can load it; auth verification uses jose directly.
+  serverExternalPackages: ["firebase-admin", "@google-cloud/firestore"],
+  allowedDevOrigins: ["10.5.0.2", "127.0.0.1", "localhost"],
 };
 
 export default nextConfig;

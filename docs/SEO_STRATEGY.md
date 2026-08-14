@@ -27,6 +27,16 @@ Priority indexable pages:
 
 Nearby communities (Marana, Oro Valley, Sahuarita, Vail, Catalina) are in the location config for future expansion — not auto-published.
 
+## Major metro expansion
+
+Published markets include city hub + high-intent service pages (pumping, emergency, repair, installation, cleaning) for major metros where septic is common outside sewered cores. Content is driven from `src/config/locations.ts` via `src/content/city-seo.ts`.
+
+Use Search Console query reports to prioritize the next hand-authored Tucson (or other) pages. Aug 2026 early queries already validated installation, cleaning, emergency repair/pumping, and “septic service Tucson” hub intent.
+
+Do **not** invent `/near-me` URLs. Capture near-me intent with strong local pages and natural wording.
+
+Add inspection / drain-field city variants only when search + lead data justify more than the national service pages.
+
 ## URL architecture
 
 - Services: `/{service}`

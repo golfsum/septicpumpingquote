@@ -1,4 +1,5 @@
 import { SERVICES } from '@/config/services';
+import { buildGeneratedCitySeoPages } from '@/content/city-seo';
 
 export type SeoPageContent = {
   slug: string;
@@ -300,13 +301,15 @@ const SEO_PAGES_DATA: SeoPageContent[] = [
     primaryKeyword: 'emergency septic service',
     secondaryKeywords: [
       'emergency septic pumping',
+      'emergency septic pumping near me',
+      'emergency septic repair near me',
       'septic backup emergency',
       '24 hour septic service',
       'urgent septic repair',
     ],
     title: 'Emergency Septic Service | Same-Day Local Response',
     metaDescription:
-      'Need emergency septic help now? Compare urgent pumping and repair quotes for backups, overflows, and alarm failures. Steps to take before the truck arrives.',
+      'Need emergency septic pumping or repair near you? Compare urgent local quotes for backups, overflows, and alarm failures. Steps to take before the truck arrives.',
     h1: 'Emergency Septic Service',
     intro:
       'Emergency septic situations include sewage backing up into the home, effluent pooling in the yard, overflowing tanks, and pump or alarm failures that risk contamination. The first priorities are stopping water use, protecting people and pets from contact with wastewater, and getting a licensed provider en route. Fast pumping may relieve immediate pressure, but underlying failures still need diagnosis once the urgent risk is controlled.',
@@ -449,14 +452,15 @@ const SEO_PAGES_DATA: SeoPageContent[] = [
   servicePage('drain-field-repair', {
     primaryKeyword: 'drain field repair',
     secondaryKeywords: [
+      'septic tank and drain field repair',
       'leach field repair',
       'septic field failure',
       'drainfield restoration',
       'fix drain field',
     ],
-    title: 'Drain Field Repair | Restore Septic Absorption',
+    title: 'Drain Field Repair | Septic Tank & Field Fixes',
     metaDescription:
-      'Compare drain field repair quotes for failing leach lines, distribution issues, and soil saturation. Learn symptoms, repair options, and when replacement is necessary.',
+      'Compare septic tank and drain field repair quotes for failing leach lines, distribution issues, and soil saturation. Learn symptoms, repair options, and when replacement is necessary.',
     h1: 'Drain Field Repair',
     intro:
       'The drain field—or soil absorption area—treats wastewater after the septic tank. When it fails, effluent surfaces, odors persist, or tanks stay chronically full despite pumping. Repair options depend on failure mode: compacted soil, broken laterals, uneven distribution, or simply age and overload. Accurate diagnosis avoids paying for tank work when the field is the real problem.',
@@ -683,8 +687,12 @@ const SEO_PAGES_DATA: SeoPageContent[] = [
     pageType: 'city',
     city: 'tucson',
     state: 'az',
-    primaryKeyword: 'septic services Tucson AZ',
+    primaryKeyword: 'septic service Tucson AZ',
     secondaryKeywords: [
+      'septic tucson',
+      'septic tucson az',
+      'tucson septic service',
+      'septic service tucson az',
       'Tucson septic pumping',
       'Pima County septic',
       'septic companies Tucson',
@@ -692,10 +700,10 @@ const SEO_PAGES_DATA: SeoPageContent[] = [
     ],
     title: 'Septic Services in Tucson, AZ | Local Quotes by Service',
     metaDescription:
-      'Compare septic pumping, repair, inspection, and emergency quotes in Tucson and nearby Pima County communities. Desert soil, monsoon season, and local system considerations.',
+      'Tucson septic service quotes for pumping, repair, installation, cleaning, inspection, and emergencies in Pima County. Desert soil, monsoon season, and local system considerations.',
     h1: 'Septic Services in Tucson, Arizona',
     intro:
-      'Tucson and surrounding unincorporated areas still depend on onsite septic for many homes—especially in foothills parcels, older neighborhoods without sewer extension, and rural-suburban pockets toward Marana, Vail, and Sahuarita. Desert heat, caliche layers, and monsoon downpours shape how systems fail and how maintenance should be timed. Use the links below to compare quotes by service or request a local estimate for your address.',
+      'Looking for septic service in Tucson, AZ? Tucson and surrounding unincorporated areas still depend on onsite septic for many homes—especially in foothills parcels, older neighborhoods without sewer extension, and rural-suburban pockets toward Marana, Vail, and Sahuarita. Desert heat, caliche layers, and monsoon downpours shape how systems fail and how maintenance should be timed. Use the links below to compare quotes by service or request a local estimate for your address.',
     sections: [
       {
         id: 'tucson-septic-landscape',
@@ -755,6 +763,9 @@ const SEO_PAGES_DATA: SeoPageContent[] = [
       { href: '/az/tucson/emergency-septic-service', label: 'Tucson emergency septic' },
       { href: '/az/tucson/septic-inspection', label: 'Tucson septic inspection' },
       { href: '/az/tucson/drain-field-repair', label: 'Tucson drain field repair' },
+      { href: '/az/tucson/septic-installation', label: 'Tucson septic installation' },
+      { href: '/az/tucson/septic-tank-cleaning', label: 'Tucson septic tank cleaning' },
+      { href: '/septic-pumping', label: 'Septic pumping overview' },
     ],
     indexStatus: 'indexable',
     published: true,
@@ -895,16 +906,20 @@ const SEO_PAGES_DATA: SeoPageContent[] = [
   cityServicePage('emergency-septic-service', {
     primaryKeyword: 'emergency septic service Tucson',
     secondaryKeywords: [
+      'emergency septic repair Tucson',
+      'emergency septic pumping Tucson',
+      'emergency septic pumping near me',
+      'emergency septic repair near me',
       '24 hour septic Tucson',
       'septic backup Tucson',
       'urgent septic pumping Tucson',
     ],
     title: 'Emergency Septic Service in Tucson, AZ | Urgent Local Help',
     metaDescription:
-      'Emergency septic pumping and repair in Tucson when backups or overflows happen. What to do immediately in Pima County before the service truck arrives.',
+      'Emergency septic pumping and repair near Tucson when backups or overflows happen. What to do immediately in Pima County before the service truck arrives.',
     h1: 'Emergency Septic Service in Tucson, AZ',
     intro:
-      'Emergency septic calls spike in Tucson after heavy monsoon bursts, holiday guest overload, and deferred pumping on older foothill systems. Sewage backing into tubs, effluent surfacing near Tanque Verde wash parcels, or silent pump chambers after power outages all warrant urgent response. Stop water use, keep family and pets away from wastewater, and request dispatch with a clear symptom description.',
+      'Need emergency septic pumping or repair near you in the Tucson area? Calls spike after heavy monsoon bursts, holiday guest overload, and deferred pumping on older foothill systems. Sewage backing into tubs, effluent surfacing near Tanque Verde wash parcels, or silent pump chambers after power outages all warrant urgent response. Stop water use, keep family and pets away from wastewater, and request dispatch with a clear symptom description.',
     sections: [
       {
         id: 'tucson-emergency-scenarios',
@@ -1021,16 +1036,17 @@ const SEO_PAGES_DATA: SeoPageContent[] = [
   cityServicePage('drain-field-repair', {
     primaryKeyword: 'drain field repair Tucson AZ',
     secondaryKeywords: [
+      'septic tank and drain field repair',
       'Tucson leach field repair',
       'septic field failure Tucson',
       'fix drain field Pima County',
     ],
-    title: 'Drain Field Repair in Tucson, AZ | Local Quotes',
+    title: 'Drain Field Repair in Tucson, AZ | Tank & Field Quotes',
     metaDescription:
-      'Drain field repair in Tucson and Pima County—clay and caliche soils, monsoon saturation, and replacement planning on desert lots.',
+      'Septic tank and drain field repair in Tucson and Pima County—clay and caliche soils, monsoon saturation, and replacement planning on desert lots.',
     h1: 'Drain Field Repair in Tucson, AZ',
     intro:
-      'Drain field failures around Tucson show up as persistent wet spots after monsoon, sewage odor near Sahuarita clay soils, or chronically full tanks in Marana subdivisions built before modern sizing rules. Caliche and shallow bedrock limit trench depth—repairs must respect soil realities and county setbacks. Partial line fixes help when damage is localized; widespread failure usually means new absorption area or engineered replacement.',
+      'Septic tank and drain field repair calls around Tucson show up as persistent wet spots after monsoon, sewage odor near Sahuarita clay soils, or chronically full tanks in Marana subdivisions built before modern sizing rules. Caliche and shallow bedrock limit trench depth—repairs must respect soil realities and county setbacks. Partial line fixes help when damage is localized; widespread failure usually means new absorption area or engineered replacement.',
     sections: [
       {
         id: 'soil-conditions',
@@ -1081,20 +1097,280 @@ const SEO_PAGES_DATA: SeoPageContent[] = [
     ],
   }),
 
-  draftServicePage(
-    'septic-tank-cleaning',
-    'Septic Tank Cleaning Services | Local Quotes',
-    'Professional septic tank cleaning beyond standard pumping—heavy sludge removal and prep for inspection or property transfer.',
-    'Septic Tank Cleaning',
-    'Septic tank cleaning typically refers to thorough removal of built-up solids and scum, sometimes including washing or scraping baffle areas when preparing for inspection, real estate transfer, or long-deferred maintenance. It goes hand in hand with pumping but may involve extra time on heavily neglected tanks.',
-  ),
-  draftServicePage(
-    'septic-installation',
-    'Septic System Installation | New System Quotes',
-    'New septic system installation for homes without sewer access—design, permits, tank and drain field placement.',
-    'Septic System Installation',
-    'New septic installation covers site evaluation, permit filing, tank and absorption field placement, and connection to household plumbing. Soil testing, setbacks from wells, and household size determine system type on each lot.',
-  ),
+  servicePage('septic-tank-cleaning', {
+    primaryKeyword: 'septic system cleaning',
+    secondaryKeywords: [
+      'septic tank cleaning',
+      'septic system cleaning near me',
+      'septic tank cleaning service',
+      'clean septic tank',
+    ],
+    title: 'Septic Tank Cleaning Services | Local Quotes',
+    metaDescription:
+      'Compare septic system cleaning quotes near you. Thorough sludge and scum removal beyond a basic pump-out—ideal before inspection, sale, or after long deferred maintenance.',
+    h1: 'Septic Tank Cleaning Services',
+    intro:
+      'Septic system cleaning usually means a thorough pump-out plus extra attention to heavy sludge, stubborn scum, and baffle areas—not just a quick liquid removal. Homeowners search for cleaning when tanks have been neglected, before a real estate inspection, or when odors and slow drains persist after a prior incomplete service. Cleaning still requires a licensed hauler and proper disposal; additives are not a substitute.',
+    sections: [
+      {
+        id: 'cleaning-vs-pumping',
+        heading: 'Cleaning vs. standard pumping',
+        body:
+          'Standard pumping removes liquids, sludge, and scum with a vacuum truck and often includes a quick baffle look. Cleaning typically adds time for thick layers, compartment-by-compartment emptying, and sometimes washing or scraping visible surfaces before inspection photos. Not every visit needs both labels—ask providers what is included so you are not paying twice for the same scope. Neglected tanks with years of solids may need the deeper clean; routine three-to-five-year maintenance is often a solid pump-out with filter service.',
+      },
+      {
+        id: 'when-to-clean',
+        heading: 'When cleaning is the right call',
+        body:
+          'Long gaps since the last service, unknown history on a newly purchased home, and preparation for a detailed inspection are common triggers. Homes with garbage disposals or frequent guests load solids faster and may need more aggressive removal. If a prior pump left heavy sludge because of poor access or incomplete work, schedule a thorough clean with riser installation so the next cycle is easier. Odors that return within weeks of pumping can mean incomplete emptying, baffle issues, or field problems—not a need for chemical cleaners.',
+      },
+      {
+        id: 'what-to-expect',
+        heading: 'What to expect on a cleaning visit',
+        body:
+          'Technicians locate and open lids, pump all compartments, check inlet and outlet baffles when visible, and note tank condition. Effluent filters should be cleaned if present. You should get confirmation of approximate gallons removed and any recommended follow-up. Risers and secure lids are worth adding during cleaning if lids were buried. Keep pets and kids away from open tanks, and clear a path for the vacuum hose before the truck arrives.',
+      },
+      {
+        id: 'cost-and-quotes',
+        heading: 'Cost factors and comparing quotes',
+        body:
+          'Price tracks tank size, sludge thickness, dig time for buried lids, hose length, travel, and whether filter or baffle work is included. Emergency same-day cleaning costs more than scheduled service. Compare written scopes from licensed local providers rather than the cheapest lump sum. If you searched for septic system cleaning near me, include your city, ZIP, and access notes so travel and disposal assumptions are accurate.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is septic cleaning the same as pumping?',
+        answer:
+          'They overlap. Cleaning usually implies a more thorough solids removal and prep for inspection, while pumping is the core vacuum service. Clarify the scope when you request a quote.',
+      },
+      {
+        question: 'Do additives clean my septic tank?',
+        answer:
+          'No. Biological additives do not replace mechanical removal of sludge and scum. Some products can harm soil biology in the drain field.',
+      },
+      {
+        question: 'How often should a septic tank be cleaned?',
+        answer:
+          'Most homes need pumping or cleaning every three to five years. Heavy use, small tanks, and garbage disposals shorten the interval.',
+      },
+      {
+        question: 'Should I clean the tank before selling?',
+        answer:
+          'Often yes—buyers and inspectors want recent service history and a clearer view of baffles and tank condition. Pair cleaning with inspection when records are missing.',
+      },
+    ],
+    internalLinks: [
+      { href: '/septic-pumping', label: 'Septic pumping' },
+      { href: '/az/tucson/septic-tank-cleaning', label: 'Tucson septic tank cleaning' },
+      { href: '/septic-inspection', label: 'Septic inspection' },
+      { href: '/septic-tank-pumping-cost', label: 'Pumping cost guide' },
+    ],
+  }),
+
+  servicePage('septic-installation', {
+    primaryKeyword: 'septic system installation',
+    secondaryKeywords: [
+      'septic tank installation',
+      'new septic system',
+      'septic system install',
+      'install septic tank',
+    ],
+    title: 'Septic System Installation | New System Quotes',
+    metaDescription:
+      'Get quotes for new septic tank and system installation—site evaluation, permits, tank and drain field design for homes without municipal sewer.',
+    h1: 'Septic System Installation',
+    intro:
+      'New septic system installation covers site evaluation, soil testing, permitting, tank placement, and drain field or advanced treatment design for homes without sewer access. Whether you are building new, replacing a failed system, or converting from an outdated setup, local soil and health department rules decide what is allowed on your lot more than a generic national checklist.',
+    sections: [
+      {
+        id: 'installation-process',
+        heading: 'How septic installation typically works',
+        body:
+          'Most projects start with a site and soil evaluation to determine percolation, setbacks from wells and structures, and available field area. Designers size the tank and absorption system for bedroom count and daily flow. Permits from the local environmental health authority come next, then excavation, tank setting, piping, field or treatment unit install, inspection, and backfill. Final approval usually requires as-built documentation. Rushing soil testing or skipping reserve field planning creates expensive problems later.',
+      },
+      {
+        id: 'system-types',
+        heading: 'Conventional vs. alternative systems',
+        body:
+          'Conventional gravity tanks and trench fields work where soils and lot size allow. Rocky, shallow, or poorly draining soils often need pressure-dosed fields, mounds, or advanced treatment units. Aerobic systems appear in high water table regions and some county rules. The right choice balances permit requirements, maintenance burden, and cost—not just the lowest install bid. Ask whether annual service contracts are required for advanced units before you commit.',
+      },
+      {
+        id: 'cost-factors',
+        heading: 'What affects installation cost',
+        body:
+          'Soil conditions, system type, tank size, excavation difficulty, distance for materials, and permit fees drive price. Rock excavation, steep grades, and long sewer runs from house to tank add labor. Advanced treatment costs more upfront but may be the only permitted path on tight lots. Get itemized quotes that separate design, permits, tank, field, and inspection fees so you can compare apples to apples.',
+      },
+      {
+        id: 'after-install',
+        heading: 'After your new system is installed',
+        body:
+          'Keep as-builts and permit paperwork with your home records. Note pumping intervals recommended for your tank size and household. Protect the field from vehicles and heavy landscaping. Install risers at grade when allowed so future pumping does not require digging. Schedule the first inspection or pump on the interval your installer and local code suggest—not when problems appear.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'How long does septic installation take?',
+        answer:
+          'After permits, many residential installs take several days to a couple of weeks depending on weather, inspections, and system complexity. Design and permitting can take longer than the physical install.',
+      },
+      {
+        question: 'Do I need a soil test before installation?',
+        answer:
+          'Almost always. Soil and site evaluation determine whether a conventional field is allowed or an alternative system is required.',
+      },
+      {
+        question: 'Can I install a septic system myself?',
+        answer:
+          'Most jurisdictions require licensed installers and permitted designs. DIY installs risk failed inspections, illegal discharge, and expensive tear-outs.',
+      },
+      {
+        question: 'Is installation different from replacement?',
+        answer:
+          'Replacement often reuses house plumbing stubs and may rebuild on an existing footprint, but failed fields frequently need a new absorption area. New builds start from a blank site evaluation.',
+      },
+    ],
+    internalLinks: [
+      { href: '/az/tucson/septic-installation', label: 'Tucson septic installation' },
+      { href: '/septic-system-replacement', label: 'Septic system replacement' },
+      { href: '/drain-field-repair', label: 'Drain field repair' },
+      { href: '/septic-inspection', label: 'Septic inspection' },
+    ],
+  }),
+
+  cityServicePage('septic-installation', {
+    primaryKeyword: 'septic tank installation Tucson',
+    secondaryKeywords: [
+      'septic system installation Tucson',
+      'new septic system Tucson',
+      'septic install Tucson AZ',
+      'Pima County septic installation',
+    ],
+    title: 'Septic Tank Installation in Tucson, AZ | Local Quotes',
+    metaDescription:
+      'Septic tank and system installation quotes in Tucson and Pima County. Caliche soils, desert lots, permits, and conventional vs. alternative designs explained.',
+    h1: 'Septic System Installation in Tucson, AZ',
+    intro:
+      'Septic tank installation in Tucson and unincorporated Pima County has to account for caliche, shallow rock in the foothills, setbacks on desert lots, and county onsite wastewater rules. New builds toward Marana, Vail, Sahuarita, and Catalina often need systems designed for soil realities—not a one-size trench copied from wetter climates. Request quotes with your parcel location, bedroom count, and whether this is a new install or replacement.',
+    sections: [
+      {
+        id: 'pima-permits',
+        heading: 'Pima County site evaluation and permits',
+        body:
+          'Expect soil/site evaluation before design approval. County rules govern tank sizing, setbacks from wells and washes, and whether conventional trenches are allowed. Older lots with failed fields may need engineered or alternative designs when reserve area is limited. Keep prior permit files if replacing—a known layout speeds redesign. Providers familiar with Pima County inspection sequencing reduce delay between excavation and final approval.',
+      },
+      {
+        id: 'desert-design',
+        heading: 'Designing for desert soils and slopes',
+        body:
+          'Caliche and compacted desert soils can block percolation and excavation depth. Foothills lots in Oro Valley and Catalina may need pressure-dosed or shallow systems. Washes and drainage paths must stay clear of absorption areas so monsoon flow does not flood the field. Xeriscape plans should keep irrigation away from laterals. Local installers who work these soils daily are better than generic out-of-area crews guessing at trench depth.',
+      },
+      {
+        id: 'cost-tucson-install',
+        heading: 'What drives install cost around Tucson',
+        body:
+          'Rock and caliche excavation, system type, tank size, long runs on acreage, and permit fees dominate quotes. Hillside access for equipment raises labor. Advanced treatment costs more but may be required on constrained parcels. Compare scopes that list design, permits, tank, field, and inspection separately. Ask about risers at grade so future pumping in desert heat is faster and cheaper.',
+      },
+      {
+        id: 'nearby-install-coverage',
+        heading: 'Tucson installers serving nearby communities',
+        body:
+          'Crews routinely work Marana, Oro Valley, Sahuarita, Vail, Catalina, and Green Valley corridors. Mention gate codes, HOA rules, and well locations when requesting quotes. Replacement of failed steel tanks on older desert properties is common alongside true new-home installs.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'How much does septic installation cost in Tucson?',
+        answer:
+          'It varies widely with soil, system type, and access. Rock excavation and alternative systems cost more than simple gravity installs on open lots. Get itemized local quotes rather than national averages.',
+      },
+      {
+        question: 'Can I install septic inside Tucson city limits?',
+        answer:
+          'Many central parcels are on sewer. Septic is more common in outlying and unincorporated areas. Confirm utility availability before designing an onsite system.',
+      },
+      {
+        question: 'Do monsoon rains delay installation?',
+        answer:
+          'Wet trenches and soft access can pause excavation. Scheduling around monsoon season reduces weather delays on field work.',
+      },
+      {
+        question: 'Is a soil test required in Pima County?',
+        answer:
+          'Site and soil evaluation is standard before permitted installation. Results determine conventional vs. alternative designs.',
+      },
+    ],
+    internalLinks: [
+      { href: '/septic-installation', label: 'Septic installation overview' },
+      { href: '/az/tucson', label: 'Tucson septic hub' },
+      { href: '/az/tucson/drain-field-repair', label: 'Tucson drain field repair' },
+      { href: '/az/tucson/septic-inspection', label: 'Tucson septic inspection' },
+    ],
+  }),
+
+  cityServicePage('septic-tank-cleaning', {
+    primaryKeyword: 'septic tank cleaning Tucson',
+    secondaryKeywords: [
+      'septic system cleaning Tucson',
+      'septic system cleaning near me',
+      'Tucson septic cleaning',
+      'clean septic tank Tucson AZ',
+    ],
+    title: 'Septic Tank Cleaning in Tucson, AZ | Local Quotes',
+    metaDescription:
+      'Septic system cleaning near Tucson—thorough sludge and scum removal for Pima County homes. Schedule before inspection, sale, or after deferred maintenance.',
+    h1: 'Septic Tank Cleaning in Tucson, AZ',
+    intro:
+      'Searching for septic system cleaning near you in the Tucson area usually means you need more than a rushed pump-out—buried lids, desert-lot access, and tanks that went too long between services are common. Local haulers empty compartments thoroughly, check baffles when visible, and can add risers so the next visit is faster in foothills and rural parcels.',
+    sections: [
+      {
+        id: 'tucson-cleaning-needs',
+        heading: 'Why Tucson tanks need thorough cleaning',
+        body:
+          'Hard water, seasonal occupancy in Sahuarita and Green Valley corridors, and long intervals between services let solids build thick layers. Older concrete tanks in 1980s subdivisions may have baffles that need a clear view during cleaning. Caliche-buried lids delay access—cleaning visits are a good time to install risers. Monsoon-season slow drains sometimes trace to overdue solids, not only field saturation.',
+      },
+      {
+        id: 'cleaning-visit-local',
+        heading: 'What a Tucson cleaning visit includes',
+        body:
+          'Locate lids, excavate if needed, pump all compartments, note sludge depth, and inspect visible baffles and filters. Providers serving Marana, Oro Valley, Vail, and Catalina should confirm disposal routing and any dig fees upfront. Ask for photos if you are cleaning before a home sale. Mark the tank location afterward for the next cycle.',
+      },
+      {
+        id: 'cleaning-vs-additives',
+        heading: 'Skip additives—schedule real cleaning',
+        body:
+          'Desert homeowners sometimes try enzymes instead of service. That does not remove sludge. If odors or slow drains remain after a prior cheap pump, book a thorough cleaning and inspection rather than another bottle of treatment. Pair cleaning with field evaluation if the tank refills unusually fast.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'How much does septic cleaning cost in Tucson?',
+        answer:
+          'Cost depends on tank size, dig time, access, and sludge thickness. Outer parcels and buried lids usually cost more than easy riser access in town.',
+      },
+      {
+        question: 'Is cleaning different from pumping in Pima County?',
+        answer:
+          'Providers may use the words interchangeably. Ask whether all compartments are emptied and whether baffle or filter service is included.',
+      },
+      {
+        question: 'Should I clean before monsoon season?',
+        answer:
+          'Being on schedule before heavy rains reduces backup risk from overdue solids. Cleaning does not fix a failed drain field.',
+      },
+      {
+        question: 'Do you serve areas near Tucson?',
+        answer:
+          'Routes commonly include Marana, Oro Valley, Sahuarita, Vail, and Catalina. Include your ZIP and gate notes when requesting a quote.',
+      },
+    ],
+    internalLinks: [
+      { href: '/septic-tank-cleaning', label: 'Septic cleaning overview' },
+      { href: '/az/tucson/septic-pumping', label: 'Tucson septic pumping' },
+      { href: '/az/tucson', label: 'Tucson septic hub' },
+      { href: '/septic-inspection', label: 'Septic inspection' },
+    ],
+  }),
+
   draftServicePage(
     'septic-system-replacement',
     'Septic System Replacement | Full & Partial Quotes',
@@ -1125,7 +1401,10 @@ const SEO_PAGES_DATA: SeoPageContent[] = [
   ),
 ];
 
-export const SEO_PAGES: SeoPageContent[] = SEO_PAGES_DATA;
+export const SEO_PAGES: SeoPageContent[] = [
+  ...SEO_PAGES_DATA,
+  ...buildGeneratedCitySeoPages(),
+];
 
 export function getSeoPage(slug: string): SeoPageContent | undefined {
   return SEO_PAGES.find((page) => page.slug === slug);

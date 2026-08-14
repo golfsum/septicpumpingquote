@@ -60,8 +60,10 @@ export function SeoPageView({ page }: { page: SeoPageContent }) {
           </div>
           <QuoteForm
             presetService={page.service}
-            presetCity={page.city}
-            presetState={page.state || "AZ"}
+            presetCity={page.city?.replace(/-/g, " ").replace(/\b\w/g, (c) =>
+              c.toUpperCase(),
+            )}
+            presetState={(page.state || "AZ").toUpperCase()}
             seoPageId={page.slug}
             compact
           />
@@ -143,8 +145,17 @@ export function SeoPageView({ page }: { page: SeoPageContent }) {
 function buildCrumbs(page: SeoPageContent) {
   const crumbs = [{ href: "/", label: "Home" }];
   const parts = page.slug.split("/");
-  if (parts[0] === "az" && parts[1]) {
-    crumbs.push({ href: `/az/${parts[1]}`, label: page.city || parts[1] });
+  const isCityPath =
+    parts.length >= 2 &&
+    parts[0].length === 2 &&
+    (page.pageType === "city" || page.pageType === "city-service");
+
+  if (isCityPath) {
+    const label =
+      (page.city || parts[1]).replace(/-/g, " ").replace(/\b\w/g, (c) =>
+        c.toUpperCase(),
+      );
+    crumbs.push({ href: `/${parts[0]}/${parts[1]}`, label });
     if (parts[2]) {
       crumbs.push({
         href: `/${page.slug}`,

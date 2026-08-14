@@ -13,12 +13,13 @@ export default async function AdminLocationsPage() {
     <AdminShell>
       <h1 className="text-2xl font-bold text-slate-900">Locations</h1>
       <p className="text-sm text-slate-600">
-        Tucson-area launch cluster. Do not mass-publish thin city pages.
+        Published markets show city hub + pumping pages. Nearby Tucson
+        communities stay unpublished until they get unique expansion content.
       </p>
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         {LOCATION_OPTIONS.map((loc) => {
           const cityPages = pages.filter(
-            (p) => p.city?.toLowerCase() === loc.name.toLowerCase(),
+            (p) => p.city?.toLowerCase() === loc.slug.toLowerCase(),
           );
           return (
             <div
@@ -29,17 +30,26 @@ export default async function AdminLocationsPage() {
                 <div>
                   <h2 className="font-semibold text-slate-900">
                     {loc.name}, {loc.state}
+                    {!loc.published && (
+                      <span className="ml-2 text-xs font-normal text-amber-700">
+                        (config only)
+                      </span>
+                    )}
                   </h2>
                   <p className="text-xs text-slate-500">
                     ZIPs: {loc.zipExamples.join(", ")}
                   </p>
                 </div>
-                <Link
-                  href={`/az/${loc.slug}`}
-                  className="text-sm text-teal-800 hover:underline"
-                >
-                  Hub
-                </Link>
+                {loc.published ? (
+                  <Link
+                    href={`/${loc.stateSlug}/${loc.slug}`}
+                    className="text-sm text-teal-800 hover:underline"
+                  >
+                    Hub
+                  </Link>
+                ) : (
+                  <span className="text-xs text-slate-400">Not published</span>
+                )}
               </div>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
                 {loc.localNotes}

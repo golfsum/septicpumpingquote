@@ -1,14 +1,30 @@
 import { AdminShell } from "@/components/admin/AdminShell";
 import { isAdminAuthenticated } from "@/lib/admin/auth";
 import { computeOverview } from "@/lib/analytics/overview";
+import { probeFirestore } from "@/lib/firebase/admin";
 import { listLeads } from "@/lib/leads/service";
 import { localGetSettings } from "@/lib/store/local-db";
+import type { Lead } from "@/lib/types";
 import { redirect } from "next/navigation";
 import { OverviewCharts } from "@/components/admin/OverviewCharts";
 
 export default async function AdminOverviewPage() {
   if (!(await isAdminAuthenticated())) redirect("/admin/login");
-  const leads = await listLeads();
+
+  let firestoreWarning: string | null = null;
+  let leads: Lead[] = [];
+  try {
+    leads = await listLeads();
+  } catch (error) {
+    console.error("Admin overview leads failed", error);
+    leads = [];
+  }
+
+  const probe = await probeFirestore();
+  if (!probe.ok) {
+    firestoreWarning = `Firestore is not reachable (database "${probe.databaseId}"): ${probe.error}. Create a Firestore DB in Firebase Console, or set FIRESTORE_DATABASE_ID to your DB id (use default or (default)).`;
+  }
+
   const settings = await localGetSettings();
   const overview = computeOverview(leads, settings.estimatedLeadValue);
 
@@ -36,6 +52,11 @@ export default async function AdminOverviewPage() {
       <p className="mt-1 text-sm text-slate-600">
         Lead and SEO performance snapshot for septicpumpingquote.com
       </p>
+      {firestoreWarning && (
+        <div className="mt-4 rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-950">
+          {firestoreWarning}
+        </div>
+      )}
       <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {cards.map((c) => (
           <div

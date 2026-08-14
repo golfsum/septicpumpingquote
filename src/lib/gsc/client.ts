@@ -6,38 +6,48 @@ import {
   localSetSeoMetrics,
   localUpdateSettings,
 } from "@/lib/store/local-db";
+import { normalizePrivateKey } from "@/lib/firebase/admin";
 
 export function isGscConfigured(): boolean {
   return Boolean(
     process.env.GSC_CLIENT_EMAIL &&
-      process.env.GSC_PRIVATE_KEY &&
+      (process.env.GSC_PRIVATE_KEY || process.env.GSC_PRIVATE_KEY_BASE64) &&
       process.env.GSC_PROPERTY,
   );
+}
+
+function resolveGscPrivateKey(): string {
+  if (process.env.GSC_PRIVATE_KEY_BASE64?.trim()) {
+    return normalizePrivateKey(
+      Buffer.from(process.env.GSC_PRIVATE_KEY_BASE64.trim(), "base64").toString(
+        "utf8",
+      ),
+    );
+  }
+  return normalizePrivateKey(process.env.GSC_PRIVATE_KEY || "");
 }
 
 export async function syncSearchConsole(opts?: {
   startDate?: string;
   endDate?: string;
-}): Promise<{ rows: SeoMetricRow[]; syncedAt: string }> {
+}): Promise<{ rows: SeoMetricRow[]; syncedAt: string; mode: "live" | "demo" }> {
   const syncedAt = new Date().toISOString();
 
   if (!isGscConfigured()) {
-    // Demo metrics so the SEO dashboard is usable before GSC credentials exist.
     const demo = buildDemoMetrics(syncedAt);
     await localSetSeoMetrics(demo);
     await localUpdateSettings({ gscLastSync: syncedAt });
-    return { rows: demo, syncedAt };
+    return { rows: demo, syncedAt, mode: "demo" };
   }
 
   const auth = new google.auth.JWT({
     email: process.env.GSC_CLIENT_EMAIL,
-    key: process.env.GSC_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+    key: resolveGscPrivateKey(),
     scopes: ["https://www.googleapis.com/auth/webmasters.readonly"],
   });
 
   const searchconsole = google.searchconsole({ version: "v1", auth });
-  const endDate =
-    opts?.endDate || new Date().toISOString().slice(0, 10);
+  const endDate = opts?.endDate || new Date().toISOString().slice(0, 10);
   const startDate =
     opts?.startDate ||
     new Date(Date.now() - 28 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
@@ -70,8 +80,11 @@ export async function syncSearchConsole(opts?: {
   });
 
   await localSetSeoMetrics(rows);
-  await localUpdateSettings({ gscLastSync: syncedAt });
-  return { rows, syncedAt };
+  await localUpdateSettings({
+    gscLastSync: syncedAt,
+    gscProperty: process.env.GSC_PROPERTY || "",
+  });
+  return { rows, syncedAt, mode: "live" };
 }
 
 export async function getStoredSeoMetrics(): Promise<SeoMetricRow[]> {

@@ -12,10 +12,17 @@ import type { Lead, Provider, ProviderAssignment } from "@/lib/types";
 export type ProviderInput = Omit<Provider, "id" | "createdAt" | "updatedAt">;
 
 export async function listProviders(): Promise<Provider[]> {
-  const db = getAdminDb();
-  if (db) {
-    const snap = await db.collection("providers").orderBy("createdAt", "desc").get();
-    return snap.docs.map((d) => d.data() as Provider);
+  try {
+    const db = await getAdminDb();
+    if (db) {
+      const snap = await db
+        .collection("providers")
+        .orderBy("createdAt", "desc")
+        .get();
+      return snap.docs.map((d) => d.data() as Provider);
+    }
+  } catch (error) {
+    console.error("Firestore listProviders failed, using local store", error);
   }
   return localGetProviders();
 }
@@ -28,7 +35,7 @@ export async function createProvider(input: ProviderInput): Promise<Provider> {
     updatedAt: now,
     ...input,
   };
-  const db = getAdminDb();
+  const db = await getAdminDb();
   if (db) {
     await db.collection("providers").doc(provider.id).set(provider);
     return provider;
@@ -40,7 +47,7 @@ export async function updateProvider(
   id: string,
   patch: Partial<Provider>,
 ): Promise<Provider | null> {
-  const db = getAdminDb();
+  const db = await getAdminDb();
   if (db) {
     await db
       .collection("providers")
@@ -100,7 +107,7 @@ export async function assignLeadToProvider(opts: {
     notes: opts.notes || "",
   };
 
-  const db = getAdminDb();
+  const db = await getAdminDb();
   if (db) {
     await db.collection("providerAssignments").doc(assignment.id).set(assignment);
   } else {
@@ -110,7 +117,7 @@ export async function assignLeadToProvider(opts: {
 }
 
 export async function listAssignments(): Promise<ProviderAssignment[]> {
-  const db = getAdminDb();
+  const db = await getAdminDb();
   if (db) {
     const snap = await db
       .collection("providerAssignments")

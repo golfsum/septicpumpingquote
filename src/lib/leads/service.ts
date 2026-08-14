@@ -1,5 +1,9 @@
 import { randomUUID } from "crypto";
-import { getAdminDb, isFirebaseAdminConfigured } from "@/lib/firebase/admin";
+import {
+  getAdminDb,
+  isFirebaseAdminConfigured,
+  isFirestoreNotFoundError,
+} from "@/lib/firebase/admin";
 import {
   localCheckRateLimit,
   localCreateLead,
@@ -31,7 +35,6 @@ function deriveTrafficSource(attr: LeadCreateInput["attribution"]): string {
 
 export async function checkLeadRateLimit(ip: string): Promise<boolean> {
   if (isFirebaseAdminConfigured()) {
-    // Lightweight in-process guard when Firestore is primary.
     return true;
   }
   return localCheckRateLimit(`lead:${ip}`, 8, 60 * 60 * 1000);
@@ -64,28 +67,46 @@ export async function createLead(input: LeadCreateInput): Promise<Lead> {
     trafficSource: deriveTrafficSource(input.attribution),
   };
 
-  const db = getAdminDb();
-  if (db) {
-    await db.collection("leads").doc(lead.id).set(lead);
-    return lead;
+  try {
+    const db = await getAdminDb();
+    if (db) {
+      await db.collection("leads").doc(lead.id).set(lead);
+      return lead;
+    }
+  } catch (error) {
+    console.error("Firestore createLead failed, using local store", error);
+    if (!isFirestoreNotFoundError(error)) {
+      /* still fall back so quote form works */
+    }
   }
   return localCreateLead(lead);
 }
 
 export async function listLeads(): Promise<Lead[]> {
-  const db = getAdminDb();
-  if (db) {
-    const snap = await db.collection("leads").orderBy("createdAt", "desc").get();
-    return snap.docs.map((d) => d.data() as Lead);
+  try {
+    const db = await getAdminDb();
+    if (db) {
+      const snap = await db
+        .collection("leads")
+        .orderBy("createdAt", "desc")
+        .get();
+      return snap.docs.map((d) => d.data() as Lead);
+    }
+  } catch (error) {
+    console.error("Firestore listLeads failed, using local store", error);
   }
   return localGetLeads();
 }
 
 export async function getLead(id: string): Promise<Lead | null> {
-  const db = getAdminDb();
-  if (db) {
-    const doc = await db.collection("leads").doc(id).get();
-    return doc.exists ? (doc.data() as Lead) : null;
+  try {
+    const db = await getAdminDb();
+    if (db) {
+      const doc = await db.collection("leads").doc(id).get();
+      return doc.exists ? (doc.data() as Lead) : null;
+    }
+  } catch (error) {
+    console.error("Firestore getLead failed, using local store", error);
   }
   return localGetLead(id);
 }
@@ -104,13 +125,17 @@ export async function updateLeadStatus(
       { status, at: new Date().toISOString(), note },
     ],
   };
-  const db = getAdminDb();
-  if (db) {
-    await db.collection("leads").doc(id).update({
-      ...updated,
-      updatedAt: new Date().toISOString(),
-    });
-    return getLead(id);
+  try {
+    const db = await getAdminDb();
+    if (db) {
+      await db.collection("leads").doc(id).update({
+        ...updated,
+        updatedAt: new Date().toISOString(),
+      });
+      return getLead(id);
+    }
+  } catch (error) {
+    console.error("Firestore updateLeadStatus failed, using local store", error);
   }
   return localUpdateLead(id, updated);
 }
@@ -119,13 +144,17 @@ export async function updateLead(
   id: string,
   patch: Partial<Lead>,
 ): Promise<Lead | null> {
-  const db = getAdminDb();
-  if (db) {
-    await db
-      .collection("leads")
-      .doc(id)
-      .update({ ...patch, updatedAt: new Date().toISOString() });
-    return getLead(id);
+  try {
+    const db = await getAdminDb();
+    if (db) {
+      await db
+        .collection("leads")
+        .doc(id)
+        .update({ ...patch, updatedAt: new Date().toISOString() });
+      return getLead(id);
+    }
+  } catch (error) {
+    console.error("Firestore updateLead failed, using local store", error);
   }
   return localUpdateLead(id, patch);
 }

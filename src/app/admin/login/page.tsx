@@ -29,14 +29,26 @@ export default function AdminLoginPage() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ idToken }),
         });
-        if (!res.ok) throw new Error("Login failed");
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          const parts = [
+            data.error || "Login failed on server.",
+            data.code ? `Code: ${data.code}` : "",
+            data.hint || "",
+            data.tokenProject || data.adminProject
+              ? `Token project: ${data.tokenProject || "?"} | Admin project: ${data.adminProject || "?"}`
+              : "",
+          ].filter(Boolean);
+          throw new Error(parts.join("\n"));
+        }
       } else {
         const res = await fetch("/api/admin/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ password }),
         });
-        if (!res.ok) throw new Error("Invalid password");
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || "Invalid password");
       }
       router.push("/admin");
       router.refresh();
@@ -56,7 +68,7 @@ export default function AdminLoginPage() {
         <h1 className="text-2xl font-bold text-slate-900">Admin sign in</h1>
         <p className="mt-2 text-sm text-slate-600">
           {firebaseReady
-            ? "Sign in with your Firebase admin account."
+            ? "Sign in with your Firebase Authentication user (email/password)."
             : "Firebase is not configured. Use the local admin password from ADMIN_DEV_PASSWORD."}
         </p>
         {firebaseReady && (
@@ -68,6 +80,7 @@ export default function AdminLoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              autoComplete="username"
             />
           </label>
         )}
@@ -79,9 +92,14 @@ export default function AdminLoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            autoComplete="current-password"
           />
         </label>
-        {error && <p className="mt-3 text-sm text-red-700">{error}</p>}
+        {error && (
+          <p className="mt-3 whitespace-pre-wrap text-sm text-red-700" role="alert">
+            {error}
+          </p>
+        )}
         <Button type="submit" className="mt-5 w-full" disabled={loading}>
           {loading ? "Signing in…" : "Sign in"}
         </Button>
