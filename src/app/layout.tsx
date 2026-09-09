@@ -21,13 +21,17 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: `${siteConfig.name} | Local Septic Service Quotes`,
-    template: `%s | ${siteConfig.name}`,
+    template: `%s`,
   },
   description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     siteName: siteConfig.name,
     type: "website",
     locale: "en_US",
+    url: siteConfig.url,
   },
 };
 
