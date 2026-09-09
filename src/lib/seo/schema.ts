@@ -7,6 +7,7 @@ export function organizationSchema() {
     "@type": "Organization",
     name: siteConfig.name,
     url: siteConfig.url,
+    logo: `${siteConfig.url}/logo.svg`,
     description: siteConfig.description,
     email: siteConfig.email,
   };
@@ -75,6 +76,7 @@ export function servicePageSchema(page: SeoPageContent) {
         "@type": "Organization",
         name: siteConfig.name,
         url: siteConfig.url,
+        logo: `${siteConfig.url}/logo.svg`,
         description:
           "Quote request and contractor matching service connecting homeowners with independent septic service providers.",
       },
