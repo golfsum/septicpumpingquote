@@ -20,8 +20,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = getSeoPage(slug.join("/"));
   if (!page || !page.published) return {};
   const url = `${siteConfig.url}/${page.slug}`;
+  const title =
+    page.title.length <= 44
+      ? `${page.title} | ${siteConfig.name}`
+      : page.title;
+
   return {
-    title: page.title,
+    title: { absolute: title },
     description: page.metaDescription,
     alternates: { canonical: url },
     robots:
@@ -29,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         ? { index: true, follow: true }
         : { index: false, follow: false },
     openGraph: {
-      title: page.title,
+      title,
       description: page.metaDescription,
       url,
       siteName: siteConfig.name,
