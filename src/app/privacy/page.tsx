@@ -22,17 +22,29 @@ export default function PrivacyPage() {
         <li>Contact and location details you submit in forms</li>
         <li>Service preferences, urgency, and optional problem details</li>
         <li>
+          Provider-application details such as company name, business contact
+          information, service areas, services offered, and availability
+        </li>
+        <li>
           Attribution data such as landing page, referrer, and UTM parameters
         </li>
         <li>Basic device/browser analytics when configured (e.g. GA4)</li>
       </ul>
       <h2 className="mt-8 text-xl font-semibold">How we use information</h2>
       <p className="mt-3 text-slate-700 leading-relaxed">
-        We use your information to process quote requests, improve the site,
-        measure marketing performance, prevent spam/fraud, and communicate about
-        your request. We do not sell personal information as a consumer data
-        broker product beyond connecting you with service providers you asked to
-        hear from regarding septic services.
+        We use your information to process quote requests, review provider
+        applications, improve the site, measure marketing performance, prevent
+        spam/fraud, and communicate about your request or provider application.
+        We do not sell personal information as a consumer data broker product
+        beyond connecting homeowners with service providers they asked to hear
+        from regarding septic services.
+      </p>
+      <h2 className="mt-8 text-xl font-semibold">Provider applicants</h2>
+      <p className="mt-3 text-slate-700 leading-relaxed">
+        Businesses applying to join the provider network may have their submitted
+        business contact details stored in our provider prospect directory so we
+        can verify service coverage, discuss lead opportunities, and manage
+        provider status. Applying does not automatically activate lead delivery.
       </p>
       <h2 className="mt-8 text-xl font-semibold">Contact</h2>
       <p className="mt-3 text-slate-700">
