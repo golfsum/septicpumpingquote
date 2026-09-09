@@ -15,19 +15,36 @@ export async function generateStaticParams() {
   }));
 }
 
+function cityLabel(value?: string) {
+  return (value || "")
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const page = getSeoPage(slug.join("/"));
   if (!page || !page.published) return {};
+
   const url = `${siteConfig.url}/${page.slug}`;
-  const title =
-    page.title.length <= 44
-      ? `${page.title} | ${siteConfig.name}`
-      : page.title;
+  const city = cityLabel(page.city);
+  const state = page.state?.toUpperCase();
+
+  let title = page.title.length <= 44 ? `${page.title} | ${siteConfig.name}` : page.title;
+  let description = page.metaDescription;
+
+  if (page.pageType === "city" && city && state) {
+    title = `Septic Service in ${city}, ${state} | Local Quotes`;
+    description = `Find septic pumping, repair, cleaning, installation, and emergency service in ${city}, ${state}. Request quotes from providers serving your area.`;
+  } else if (page.pageType === "city-service" && city && state) {
+    const service = page.h1.replace(` in ${city}, ${state}`, "");
+    title = `${service} in ${city}, ${state} | Local Quotes`;
+    description = `Request local ${page.primaryKeyword.toLowerCase()} quotes in ${city}, ${state}. Compare providers serving your area and get help based on access, urgency, and job scope.`;
+  }
 
   return {
     title: { absolute: title },
-    description: page.metaDescription,
+    description,
     alternates: { canonical: url },
     robots:
       page.indexStatus === "indexable"
@@ -35,7 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         : { index: false, follow: false },
     openGraph: {
       title,
-      description: page.metaDescription,
+      description,
       url,
       siteName: siteConfig.name,
       type: "website",
