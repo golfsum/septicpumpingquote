@@ -20,6 +20,14 @@ export default function TermsPage() {
         directly with a provider.
       </p>
       <p className="mt-4 text-slate-700 leading-relaxed">
+        Businesses that apply to join the provider network are submitting their
+        information for review only. An application does not guarantee approval,
+        lead volume, exclusivity, pricing, or any minimum amount of business. We
+        may verify submitted business information before activating lead routing,
+        and either party may stop a trial or provider relationship at any time
+        unless a separate written agreement says otherwise.
+      </p>
+      <p className="mt-4 text-slate-700 leading-relaxed">
         Site content is for general information and is not professional
         engineering, legal, or safety advice. In emergencies involving sewage
         backups or health hazards, contact local emergency services or a
