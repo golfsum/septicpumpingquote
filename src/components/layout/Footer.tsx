@@ -39,6 +39,9 @@ export function Footer() {
               <Link href="/how-it-works">How it works</Link>
             </li>
             <li>
+              <Link href="/providers">For septic contractors</Link>
+            </li>
+            <li>
               <Link href="/contact">Contact</Link>
             </li>
             <li>
