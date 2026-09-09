@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Septic Pumping Quote</title>
+  <desc id="desc">Septic Pumping Quote brand mark</desc>
+  <rect width="512" height="512" rx="96" fill="#0f766e"/>
+  <path d="M130 305c0-54 44-98 98-98h56c54 0 98 44 98 98v42H130v-42Z" fill="#ffffff"/>
+  <rect x="161" y="169" width="190" height="64" rx="22" fill="#ccfbf1"/>
+  <circle cx="195" cy="371" r="33" fill="#ffffff"/>
+  <circle cx="317" cy="371" r="33" fill="#ffffff"/>
+  <path d="M224 132h64v58h-64z" fill="#ffffff"/>
+</svg>
