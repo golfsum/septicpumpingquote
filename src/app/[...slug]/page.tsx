@@ -24,7 +24,7 @@ function cityLabel(value?: string) {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const page = getSeoPage(slug.join("/"));
-  if (!page || !page.published) return {};
+  if (!page || !page.published) notFound();
 
   const url = `${siteConfig.url}/${page.slug}`;
   const city = cityLabel(page.city);
