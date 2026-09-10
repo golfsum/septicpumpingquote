@@ -535,12 +535,12 @@ const SEO_PAGES_DATA: SeoPageContent[] = [
       'septic service cost',
       'septic pumping quote',
     ],
-    title: 'Septic Tank Pumping Cost Guide | What Affects Your Quote',
+    title: 'Septic Tank Pumping Cost: Compare What a Quote Includes',
     metaDescription:
       'Understand what drives septic tank pumping cost—tank size, access, location, and add-ons. Compare quotes without relying on vague national averages.',
-    h1: 'Septic Tank Pumping Cost: What to Expect',
+    h1: 'Septic Tank Pumping Cost: Compare What the Quote Includes',
     intro:
-      'Pumping cost depends on measurable factors more than a single flat rate. Tank size, how full it is, lid accessibility, hose distance, and optional services all appear on a well-written quote. Comparing two or three local estimates helps you spot outliers and avoid paying for vague “trip charges” without a clear scope of work.',
+      'The useful price is the total for pumping your tank under your property’s actual access conditions. Tank size, lid access, hose distance, disposal, and optional services can change the total. This page does not publish an invented national or local average. Use the scope checklist and the clearly fictional example below to compare real quotes from providers that serve your address.',
     sections: [
       {
         id: 'cost-drivers',
@@ -559,6 +559,12 @@ const SEO_PAGES_DATA: SeoPageContent[] = [
         heading: 'When pumping leads to other costs',
         body:
           'Pumping may reveal broken baffles, cracked lids, or high return flow indicating drain-field issues—repairs quoted separately. Real estate transactions sometimes require inspection reports or dye tests in addition to emptying. Installing risers after a dig saves money on future visits compared to paying dig fees every three years. If the truck cannot reach the tank, portable transfer or smaller equipment may cost more. Treat pumping as maintenance with optional discovery, not a guarantee that no other work is needed.',
+      },
+      {
+        id: 'fictional-comparison',
+        heading: 'Fictional example: compare the total, not the starting price',
+        body:
+          'These figures are invented to explain the calculation; they are not quotes or market averages. Example A lists $375 for pumping, $75 for locating access, and $40 for additional hose, totaling $490. Example B lists $480 with locating and hose access included. The lower starting price becomes $10 more for the stated scope. Confirm tank capacity, compartments, disposal, access assumptions, and possible extra charges before deciding.',
       },
       {
         id: 'saving-without-skipping',
@@ -586,7 +592,7 @@ const SEO_PAGES_DATA: SeoPageContent[] = [
       {
         question: 'Should I choose the cheapest quote?',
         answer:
-          'Choose a licensed provider with a clear written scope. Extremely low quotes may exclude dig fees, disposal, or proper tank emptying of all compartments.',
+          'Choose a provider who meets the requirements that apply in your area and gives a clear written scope. Extremely low quotes may exclude access work, disposal, or all required compartments.',
       },
       {
         question: 'Does tank size affect how often I pump?',
