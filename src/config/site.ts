@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Septic Pumping Quote",
   domain: "septicpumpingquote.com",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://septicpumpingquote.com",
+  url: "https://www.septicpumpingquote.com",
   tagline: "Request quotes from septic service professionals in your area.",
   description:
     "Get septic service quotes from local professionals. Compare pumping, repair, inspection, and emergency septic providers serving your area.",
