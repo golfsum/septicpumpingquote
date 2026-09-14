@@ -6,7 +6,7 @@ const nav = [
   { href: "/septic-repair", label: "Repair" },
   { href: "/emergency-septic-service", label: "Emergency" },
   { href: "/septic-inspection", label: "Inspection" },
-  { href: "/az/tucson", label: "Tucson" },
+  { href: "/service-areas", label: "Service areas" },
   { href: "/how-it-works", label: "How it works" },
 ];
 
