@@ -9,6 +9,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: page.pageType === "city-service" ? 0.9 : 0.7,
   }));
 
+  const tools: MetadataRoute.Sitemap = [
+    {
+      url: `${siteConfig.url}/tools`,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteConfig.url}/tools/septic-pumping-frequency-calculator`,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteConfig.url}/tools/septic-tank-size-calculator`,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteConfig.url}/tools/septic-maintenance-schedule`,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+  ];
+
   return [
     {
       url: siteConfig.url,
@@ -40,6 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.4,
     },
+    ...tools,
     ...pages,
   ];
 }
