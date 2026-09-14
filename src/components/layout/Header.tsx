@@ -7,7 +7,7 @@ const nav = [
   { href: "/emergency-septic-service", label: "Emergency" },
   { href: "/septic-inspection", label: "Inspection" },
   { href: "/service-areas", label: "Service areas" },
-  { href: "/how-it-works", label: "How it works" },
+  { href: "/tools", label: "Free tools" },
 ];
 
 export function Header() {
