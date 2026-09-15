@@ -8,16 +8,16 @@ import { organizationSchema, websiteSchema } from "@/lib/seo/schema";
 
 const howItWorks = [
   {
-    title: "Tell us what you need",
-    body: "Share your ZIP, the septic service you need, and how soon you need help.",
+    title: "Start with your ZIP code",
+    body: "Tell us where the job is, what septic service you need, and how soon you need help.",
   },
   {
-    title: "We match local providers",
-    body: "Your request can be shared with independent septic professionals serving your area.",
+    title: "Share the job details once",
+    body: "Add the details that can help independent septic professionals serving your area evaluate the request.",
   },
   {
-    title: "Compare your options",
-    body: "Providers may contact you with availability and pricing so you can choose what fits.",
+    title: "Compare provider responses",
+    body: "Providers may contact you with availability and pricing so you can compare options before choosing who to hire.",
   },
 ];
 
@@ -48,33 +48,34 @@ export default function HomePage() {
               {siteConfig.name}
             </p>
             <h1 className="mt-3 max-w-xl text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-              Get septic service quotes from local professionals
+              Request septic service quotes in your area
             </h1>
             <p className="mt-4 max-w-xl text-lg leading-relaxed text-slate-600">
-              Tell us what your septic system needs and request quotes from
-              septic service providers serving your area.
+              Start with your ZIP code, choose the septic service you need, and share the job details once. Independent providers serving your area may contact you with availability and pricing.
             </p>
             <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-700">
               <span className="rounded-md bg-white/80 px-3 py-1.5 ring-1 ring-slate-200">
-                No-obligation request
+                Free quote request
               </span>
               <span className="rounded-md bg-white/80 px-3 py-1.5 ring-1 ring-slate-200">
-                Local matching
+                No obligation to hire
               </span>
               <span className="rounded-md bg-white/80 px-3 py-1.5 ring-1 ring-slate-200">
-                Privacy-conscious
+                Local provider matching
               </span>
             </div>
+            <p className="mt-5 max-w-xl text-sm leading-relaxed text-slate-500">
+              Need pumping, cleaning, repair, inspection, or emergency septic help? The form starts with ZIP code and only asks for the details relevant to your request.
+            </p>
           </div>
           <QuoteForm seoPageId="home" />
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-14">
-        <h2 className="text-2xl font-bold text-slate-900">Common services</h2>
+        <h2 className="text-2xl font-bold text-slate-900">Choose the septic service you need</h2>
         <p className="mt-2 max-w-2xl text-slate-600">
-          Start with the job you need. Each page explains what to expect and
-          includes a quote request form.
+          Start with the job you need. Each service page explains what can affect the work and includes the same quote request process.
         </p>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICE_OPTIONS.slice(0, 6).map((s) => (
@@ -94,7 +95,7 @@ export default function HomePage() {
 
       <section className="bg-slate-50 border-y border-slate-200">
         <div className="mx-auto max-w-6xl px-4 py-14">
-          <h2 className="text-2xl font-bold text-slate-900">How it works</h2>
+          <h2 className="text-2xl font-bold text-slate-900">How the quote request works</h2>
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             {howItWorks.map((item, i) => (
               <div key={item.title}>
@@ -115,17 +116,15 @@ export default function HomePage() {
         <div className="grid gap-10 lg:grid-cols-2">
           <div>
             <h2 className="text-2xl font-bold text-slate-900">
-              Why compare quotes
+              Why compare septic service options
             </h2>
             <p className="mt-3 text-slate-600 leading-relaxed">
-              Septic work varies by tank access, soil conditions, urgency, and
-              system type. Comparing local professionals helps you understand
-              availability and pricing before you commit.
+              Septic work varies by tank access, system type, urgency, soil conditions, and the exact service required. Comparing responses can help you understand availability and pricing before choosing a provider.
             </p>
             <ul className="mt-5 space-y-2 text-sm text-slate-700">
-              <li>• Clear request process with no fake ratings or counts</li>
+              <li>• Submit the job details once</li>
               <li>• Independent providers, not our employees</li>
-              <li>• Useful for routine pumping and urgent backups</li>
+              <li>• Useful for routine pumping and urgent septic problems</li>
             </ul>
           </div>
           <div>
@@ -150,8 +149,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-4 py-14">
           <h2 className="text-2xl font-bold">Popular service areas</h2>
           <p className="mt-2 max-w-2xl text-teal-100">
-            Tucson is the deepest local cluster. We also publish major-metro hubs
-            where septic is common outside city sewer lines.
+            Browse location-specific septic service information and start a quote request for your area.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             {getPublishedLocations().map((loc) => (
@@ -196,10 +194,10 @@ export default function HomePage() {
       <section className="bg-slate-50 border-t border-slate-200">
         <div className="mx-auto max-w-3xl px-4 py-14 text-center">
           <h2 className="text-2xl font-bold text-slate-900">
-            Request your septic quotes
+            Ready to request septic service quotes?
           </h2>
           <p className="mt-2 text-slate-600">
-            Start with your ZIP code. It takes about a minute.
+            Start with your ZIP code and service need. There is no obligation to hire a provider.
           </p>
           <a
             href="#quote"
